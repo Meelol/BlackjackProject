@@ -10,16 +10,16 @@ class Suit:
         self.fillSuit()
 
     def fillSuit(self):
-        for i in range(Suit.CARDS_IN_SUIT):
-            self._cards.append(Card(Card.valid_numberSymbols[i]))
+        for key in Card.valid_numberSymbolsAndValues:
+            self._cards.append(Card(key))
 
-    def removeCardFromSuit(self, symbol, card):
-        self.cards
+    def getCardFromSuit(self, number):
+         return self._cards.pop(number)
 
     def printSuit(self):
         print(self._symbol, *self._cards)
 
 
-'''Test Suit Class
-s = Suit(u"\u2666")
+#Test Suit Class
+'''s = Suit(u"\u2666")
 s.printSuit()'''
