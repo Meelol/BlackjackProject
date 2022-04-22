@@ -24,7 +24,7 @@ class Dealer(blackjackActionsInterface):
         self._hand.addCard(self._deck.getCardFromDeck())
         return self._deck.getCardFromDeck()
 
-    def dealerAdvancedAI(self, hand):
+    def dealerAdvancedAI(self, userHand):
         while self._hand.getHandValue() < 17:
             self.hit()
             self.showCardsInHand()
@@ -48,7 +48,7 @@ class Dealer(blackjackActionsInterface):
         self._hand = Hand()
 
     def showCardsInHand(self):
-        print(f"Dealer's hand: {self._hand}")
+        print(f"Dealer's hand: {self._hand} ")
 
 
 '''d = Dealer()

@@ -8,6 +8,9 @@ class User(blackjackActionsInterface):
         self._hand = Hand()
         self._bet = 0
 
+    def getHand(self):
+        return self._hand
+
     def getBalance(self):
         return self._balance
 
@@ -16,7 +19,7 @@ class User(blackjackActionsInterface):
 
     def setBet(self, amount):
         self._bet = amount
-    
+
     def getBet(self):
         return self._bet
 
@@ -34,7 +37,7 @@ class User(blackjackActionsInterface):
         print(f"Balance: {self._balance}$\nCurrent bet: {self._bet}$")
 
     def showCardsInHand(self):
-        print(f"Your hand: {self._hand}")
-    
+        print(f"Your hand: {self._hand} ")
+
     def getHandValue(self):
         return self._hand.getHandValue()

@@ -7,7 +7,7 @@ class Deck:
         self._suit = []
         self.fillDeck()
         self.cardCounter = 52
-
+        
     def fillDeck(self):
         diamondSuit = Suit(u"\u2666")
         heartSuit = Suit(u"\u2665")
@@ -20,12 +20,15 @@ class Deck:
     def getCardFromDeck(self):
         random_suit = random.randint(0, 3)
         random_cardFromSuit = random.randint(0, 12)
-        if self._suit[random_suit]._cards[random_cardFromSuit] in self._suit[random_suit]._cards:
-            self.cardCounter -= 1
-            return (self._suit[random_suit]._symbol, self._suit[random_suit].getCardFromSuit(random_cardFromSuit))
-        else:
+        try:
+            if self._suit[random_suit]._cards[random_cardFromSuit] is None:
+             self.getCardFromDeck()
+            else:
+                self.cardCounter -= 1
+                return (self._suit[random_suit]._symbol, self._suit[random_suit].getCardFromSuit(random_cardFromSuit)) 
+        except IndexError:
             self.getCardFromDeck()
-
+            
     def printDeck(self):
         for suit in self._suit:
             suit.printSuit()
@@ -35,4 +38,5 @@ class Deck:
 '''d = Deck()
 d.printDeck()
 d.getCardFromDeck()
-d.printDeck()'''
+d.printDeck()
+'''
