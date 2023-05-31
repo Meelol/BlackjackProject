@@ -1,5 +1,6 @@
 import re
 import sys
+import time
 from user import User
 from dealer import Dealer
 
@@ -52,8 +53,10 @@ class Game:
 
         # Dealer's turn
         print("Dealer's Turn:")
+        sys.stdout.flush()
         self.checkForNewDeck()
         self._dealer.showCardsInHand()
+        time.sleep(2)
         self._dealer.dealerAdvancedAI(self._user.getHand())
 
         # Game's decision
@@ -77,20 +80,25 @@ class Game:
         self._dealer.resetHand()
 
     def setBetAndPotential(self):
-        bet = int(input("Place bet (min 20$) or -1 to exit: "))
-        if bet == -1:
-            print("Thank you for your money! Please comeback!")
-            sys.exit()
-        if self._user.getBalance() < 20:
-            print("Lmao you lost all your money. Come back when you get more!")
-            return
-        elif bet < 20 or bet > self._user.getBalance():
-            print("Please enter a valid amount.")
+        try:
+            bet = int(input("Place bet (min 20$) or -1 to exit: "))
+            if bet == -1:
+                print("Thank you for your money! Please comeback!")
+                sys.exit()
+            if self._user.getBalance() < 20:
+                print("You lost all your money. Come back when you get more!")
+                sys.exit()
+            elif bet < 20 or bet > self._user.getBalance():
+                print("Please enter a valid amount.")
+                self.setBetAndPotential()
+            else:
+                self._user.setBet(bet)
+                self._user.setBalance(-bet)
+                self.potentialEarnings = 2 * bet
+        except ValueError:
+            print("Please insert a valid value.")
             self.setBetAndPotential()
-        else:
-            self._user.setBet(bet)
-            self._user.setBalance(-bet)
-            self.potentialEarnings = 2 * bet
+        
 
     def bustedHand(self, hand):
         if hand.getHandValue() > 21:

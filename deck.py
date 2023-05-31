@@ -18,8 +18,8 @@ class Deck:
             self._suit.append(suit)
 
     def getCardFromDeck(self):
-        random_suit = random.randint(0, 3)
-        random_cardFromSuit = random.randint(0, 12)
+        random_suit = random.randint(0, len(self._suit) -1 )
+        random_cardFromSuit = random.randint(0, len(self._suit[random_suit]._cards) -1)
         try:
             if self._suit[random_suit]._cards[random_cardFromSuit] is None:
              self.getCardFromDeck()

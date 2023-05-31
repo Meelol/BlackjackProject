@@ -1,7 +1,7 @@
 from blackjackActionsInterface import blackjackActionsInterface
 from hand import Hand
 from deck import Deck
-
+from time import sleep
 
 class Dealer(blackjackActionsInterface):
     def __init__(self):
@@ -27,8 +27,10 @@ class Dealer(blackjackActionsInterface):
     def dealerAdvancedAI(self, userHand):
         while self._hand.getHandValue() < 17:
             self.hit()
+            sleep(2)
             self.showCardsInHand()
             if self._hand.getHandValue() > 21:
+                sleep(2)
                 print("You won...")
                 break
         else:
