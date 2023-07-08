@@ -4,7 +4,7 @@ from suit import Suit
 
 class Deck:
     def __init__(self):
-        self._suit = []
+        self._suitInDeck = []
         self.fillDeck()
         self.cardCounter = 52
         
@@ -15,28 +15,25 @@ class Deck:
         spadeSuit = Suit(u"\u2660")
         suits = [diamondSuit, heartSuit, clubSuit, spadeSuit]
         for suit in suits:
-            self._suit.append(suit)
+            self._suitInDeck.append(suit)
 
     def getCardFromDeck(self):
-        random_suit = random.randint(0, len(self._suit) -1 )
-        random_cardFromSuit = random.randint(0, len(self._suit[random_suit]._cards) -1)
+        random_suitInDeck = random.randint(0, len(self._suitInDeck) -1 )
+        random_cardFromSuit = random.randint(0, len(self._suitInDeck[random_suitInDeck]._cards) -1)
         try:
-            if self._suit[random_suit]._cards[random_cardFromSuit] is None:
+            if self._suitInDeck[random_suitInDeck]._cards[random_cardFromSuit] is None:
              self.getCardFromDeck()
             else:
                 self.cardCounter -= 1
-                return (self._suit[random_suit]._symbol, self._suit[random_suit].getCardFromSuit(random_cardFromSuit)) 
+                return (self._suitInDeck[random_suitInDeck]._symbol, self._suitInDeck[random_suitInDeck].getCardFromSuit(random_cardFromSuit)) 
         except IndexError:
             self.getCardFromDeck()
             
     def printDeck(self):
-        for suit in self._suit:
+        for suit in self._suitInDeck:
             suit.printSuit()
 
 
 # Test Deck Class
-'''d = Deck()
+d = Deck()
 d.printDeck()
-d.getCardFromDeck()
-d.printDeck()
-'''

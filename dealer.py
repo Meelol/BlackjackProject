@@ -37,6 +37,7 @@ class Dealer(blackjackActionsInterface):
             self.stay()
 
     def stay(self):
+        sleep(2)
         print("Dealer: Stay.")
 
     def hit(self):
