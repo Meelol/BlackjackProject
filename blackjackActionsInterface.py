@@ -8,5 +8,5 @@ class blackjackActionsInterface:
     def hit(self):
         raise NotImplementedError("Please implement this function.")
 
-    def resetHand(self):
+    def reset_hand(self):
         raise NotImplementedError("Please implement this function.")

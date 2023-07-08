@@ -1,4 +1,5 @@
 from blackjackActionsInterface import blackjackActionsInterface
+from card import Card #For testing
 from hand import Hand
 from deck import Deck
 from time import sleep
@@ -8,28 +9,28 @@ class Dealer(blackjackActionsInterface):
         self._hand = Hand()
         self._deck = Deck()
 
-    def getHand(self):
+    def get_hand(self):
         return self._hand
 
-    def getCardCounter(self):
-        return self._deck.cardCounter
+    def get_deck_total_cards(self):
+        return self._deck._total_cards
 
-    def getNewDeck(self):
+    def get_new_deck(self):
         self._deck = Deck()
 
-    def giveCardToUser(self):
-        return self._deck.getCardFromDeck()
+    def give_card_to_user(self):
+        return self._deck.get_card_from_deck()
 
-    def startRound(self):
-        self._hand.addCard(self._deck.getCardFromDeck())
-        return self._deck.getCardFromDeck()
+    def start_round(self):
+        self._hand.add_card(self._deck.get_card_from_deck())
+        return self._deck.get_card_from_deck()
 
-    def dealerAdvancedAI(self, userHand):
-        while self._hand.getHandValue() < 17:
+    def dealer_advanced_AI(self, user_hand):
+        while self._hand.get_hand_value() < 17 or self._hand.get_hand_value() <= user_hand.get_hand_value() :
             self.hit()
             sleep(2)
-            self.showCardsInHand()
-            if self._hand.getHandValue() > 21:
+            self.show_cards_in_hand()
+            if self._hand.get_hand_value() > 21:
                 sleep(2)
                 print("You won...")
                 break
@@ -42,18 +43,24 @@ class Dealer(blackjackActionsInterface):
 
     def hit(self):
         print("Dealer: Hit.")
-        self._hand.addCard(self._deck.getCardFromDeck())
+        self._hand.add_card(self._deck.get_card_from_deck())
 
-    def getHandValue(self):
-        return self._hand.getHandValue()
+    def get_hand_value(self):
+        return self._hand.get_hand_value()
 
-    def resetHand(self):
+    def reset_hand(self):
         self._hand = Hand()
 
-    def showCardsInHand(self):
+    def show_cards_in_hand(self):
         print(f"Dealer's hand: {self._hand} ")
 
 
-'''d = Dealer()
-d.startRound()
-d.showCardsInHand()'''
+# d = Dealer()
+# user_hand = Hand()
+# user_hand.add_card((u"\u2666", Card("A")))
+# user_hand.add_card((u"\u2666", Card("A")))
+# user_hand.add_card((u"\u2666", Card("9")))
+# print(user_hand.get_hand_value())
+# d.start_round()
+# d.show_cards_in_hand()
+# d.dealer_advanced_AI(user_hand)

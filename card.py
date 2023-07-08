@@ -1,35 +1,39 @@
 class Card:
-    valid_numberSymbolsAndValues = {"A": 1, "2": 2, "3": 3, "4": 4, "5": 5,
-                                    "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "J": 10, "Q": 10, "K": 10}
+    valid_cards = {
+                    "A": 1, "2": 2, "3": 3, "4": 4, "5": 5,
+                    "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, 
+                    "J": 10, "Q": 10, "K": 10   }
 
-    def __init__(self, numberSymbol):
-        self._numberSymbol = numberSymbol
-        self._cardValue = Card.valid_numberSymbolsAndValues[numberSymbol]
-
-    @property
-    def numberSymbol(self):
-        return self._numberSymbol
-
-    @numberSymbol.setter
-    def numberSymbol(self, numberSymbol):
-        if numberSymbol not in Card.valid_numberSymbolsAndValues.keys:
-            raise ValueError("numberSymbol must be a valid symbol!")
-        self._numberSymbol = numberSymbol
+    def __init__(self, number_symbol):
+        if number_symbol not in Card.valid_cards.keys():
+            raise KeyError("Invalid Card!")
+        else:
+            self._number_symbol = number_symbol
+            self._card_value = Card.valid_cards[number_symbol]
 
     @property
-    def cardValue(self):
-        return self._cardValue
+    def number_symbol(self):
+        return self._number_symbol
 
-    @cardValue.setter
-    def cardValue(self, cardValue):
-        if cardValue not in Card.valid_numberSymbolsAndValues.values:
-            raise ValueError("cardValue must be a valid value!")
-        self._cardValue = cardValue
+    @number_symbol.setter
+    def number_symbol(self, number_symbol):
+        if number_symbol not in Card.valid_cards.keys():
+            raise ValueError("number_symbol must be a valid symbol!")
+        self._number_symbol = number_symbol
+
+    @property
+    def card_value(self):
+        return self._card_value
+
+    @card_value.setter
+    def card_value(self, card_value):
+        if card_value not in Card.valid_cards.values():
+            raise ValueError("card_value must be a valid value!")
+        self._card_value = card_value
 
     def __str__(self) -> str:
-        return self._numberSymbol
+        return self._number_symbol
 
-
-'''Test Card Class
-c = Card("K")
-print(c)'''
+#Card Test
+#c = Card("K")
+#print(c)
