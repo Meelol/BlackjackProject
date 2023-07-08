@@ -14,25 +14,23 @@ class Hand:
 
     def get_hand_value(self):
         self._hand_value = 0
-        aces = []
+        aces_counter = 0
         for card in self._cards:
             if card[self.card].number_symbol != 'A':
                 self._hand_value += card[self.card]._card_value
             else:
-                aces.append(card[self.card])
-        if len(aces) == 1:
+                aces_counter += 1
+        if aces_counter == 1:
             if self._hand_value > 11:
-                self._hand_value += aces[0]._card_value
+                self._hand_value += 1
             else:
-                aces[0]._card_value = 11
-                self._hand_value += aces[0]._card_value
+                self._hand_value += 11
         else:
-            for i, ace in enumerate(aces):
-                if i == len(aces) - 1 and self._hand_value <= 10:
-                    ace._card_value = 11
-                    self._hand_value += ace._card_value
+            for i in range(aces_counter):
+                if i == (aces_counter - 1) and self._hand_value < 10:
+                    self._hand_value += 11
                 else:
-                    self._hand_value += ace._card_value
+                    self._hand_value += 1
         return self._hand_value
 
     def __str__(self) -> str:
@@ -42,12 +40,9 @@ class Hand:
         return string
 
 
-# h = Hand()
-# h.add_card((u"\u2666", Card("A")))
-# h.add_card((u"\u2666", Card("A")))
-# h.add_card((u"\u2666", Card("A")))
-# h.add_card((u"\u2666", Card("A")))
-# h.add_card((u"\u2666", Card("2")))
-# h.add_card((u"\u2666", Card("K")))
-# print(h)
-# print(h.get_hand_value())
+h = Hand()
+h.add_card((u"\u2666", Card("6")))
+h.add_card((u"\u2666", Card("A")))
+h.add_card((u"\u2666", Card("8")))
+print(h)
+print(h.get_hand_value())

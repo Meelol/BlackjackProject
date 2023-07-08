@@ -46,6 +46,7 @@ class Game:
                     print(f"Card Counter: {self._dealer.get_card_counter()}")
                 self.check_for_new_deck()
                 if self.busted_hand(self._user._hand):
+                    print(self._user._hand.get_hand_value())
                     print("You Bust!")
                     self.rounds()
             else:
@@ -118,3 +119,4 @@ class Game:
         else:
             print("Please insert a valid choice.")
             self.hit_or_stay()
+

@@ -32,7 +32,7 @@ class Dealer(blackjackActionsInterface):
             self.show_cards_in_hand()
             if self._hand.get_hand_value() > 21:
                 sleep(2)
-                print("You won...")
+                print("Lucky you!")
                 break
         else:
             self.stay()
